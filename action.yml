@@ -1,0 +1,19 @@
+name: Validate Branch Name
+description: Validates that the name of a branch associated with a PR is usuable to predict the next version of the repo.
+runs:
+  using: "composite"
+  steps:
+    - name: Set up Python
+      uses: actions/setup-python@v5
+      with:
+        python-version: 3.11
+
+    - name: Setup Launch-CLI
+      shell: bash
+      run: |
+        python3 -m pip install launch-cli
+
+    - name: Validate Branch Name
+      shell: bash
+      run: |
+        launch validate branch-name --branch-name $GITHUB_HEAD_REF

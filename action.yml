@@ -17,3 +17,13 @@ runs:
       shell: bash
       run: |
         launch validate branch-name --branch-name $GITHUB_HEAD_REF
+
+    - name: Check Repository Labels
+      shell: bash
+      run: |
+        launch github repo check-labels --repository-name ${{ github.event.repository.name }} || launch github repo create-labels --repository-name ${{ github.event.repository.name }}
+
+    - name: Apply PR Labels
+      shell: bash
+      run: |
+        launch github repo label-pull-request --repository-name ${{ github.event.repository.name }} --pull-request-id ${{ github.event.number }}

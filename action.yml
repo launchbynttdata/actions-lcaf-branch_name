@@ -17,7 +17,7 @@ runs:
       shell: bash
       run: |
         launch validate branch-name --branch-name $GITHUB_HEAD_REF
-    
+
     - name: Check Repository Labels
       shell: bash
       run: |
